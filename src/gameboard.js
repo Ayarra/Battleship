@@ -20,9 +20,9 @@ function Gameboard() {
 
   function fillBoard(shipCoord, newShip) {
     if (newShip.orientation === "horizontal") {
-      if (newShip.length + shipCoord.x > 10) return "Invalid positioning";
+      if (newShip.length + shipCoord.x > 10) return 0;
     } else if (newShip.orientation === "vertical") {
-      if (newShip.length + shipCoord.y > 10) return "Invalid positioning";
+      if (newShip.length + shipCoord.y > 10) return 0;
     }
     while (newShip.length) {
       if (newShip.orientation === "horizontal")
@@ -31,7 +31,7 @@ function Gameboard() {
         board[shipCoord.y++][shipCoord.x] = 1;
       newShip.length--;
     }
-    console.log(board);
+    return 1;
   }
   return { board, getBoard, fillBoard };
 }

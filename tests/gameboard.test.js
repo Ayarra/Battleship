@@ -21,7 +21,7 @@ describe("Testing the gameboard module", () => {
     it("Fill a space with a coordinate", () => {
       let newBoard = Gameboard();
       let shipCoord = { x: 2, y: 4 };
-      newBoard.fillBoard(shipCoord, Ship());
+      expect(newBoard.fillBoard(shipCoord, Ship())).toBe(1);
       expect(newBoard.getBoard()).toEqual([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -39,7 +39,8 @@ describe("Testing the gameboard module", () => {
     it("Fill a space with a coordinate and length (horizontal)", () => {
       let newBoard = Gameboard();
       let shipCoord = { x: 2, y: 4 };
-      newBoard.fillBoard(shipCoord, Ship(2));
+
+      expect(newBoard.fillBoard(shipCoord, Ship(2))).toBe(1);
       expect(newBoard.getBoard()).toEqual([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -57,7 +58,8 @@ describe("Testing the gameboard module", () => {
     it("Fill a space with a coordinate and length (vertical)", () => {
       let newBoard = Gameboard();
       let shipCoord = { x: 2, y: 7 };
-      newBoard.fillBoard(shipCoord, Ship(3, "vertical"));
+
+      expect(newBoard.fillBoard(shipCoord, Ship(3, "vertical"))).toBe(1);
       expect(newBoard.getBoard()).toEqual([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -75,7 +77,7 @@ describe("Testing the gameboard module", () => {
     it("Refuse to fill space if adjacent space is not enough with a coordinate and length (horizontal)", () => {
       let newBoard = Gameboard();
       let shipCoord = { x: 9, y: 4 };
-      newBoard.fillBoard(shipCoord, Ship(2));
+      expect(newBoard.fillBoard(shipCoord, Ship(2))).toBe(0);
       expect(newBoard.getBoard()).toEqual([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -93,7 +95,7 @@ describe("Testing the gameboard module", () => {
     it("Refuse to fill space if adjacent space is not enough with a coordinate and length (vertical)", () => {
       let newBoard = Gameboard();
       let shipCoord = { x: 0, y: 8 };
-      newBoard.fillBoard(shipCoord, Ship(3, "vertical"));
+      expect(newBoard.fillBoard(shipCoord, Ship(3, "vertical"))).toBe(0);
       expect(newBoard.getBoard()).toEqual([
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
