@@ -58,7 +58,15 @@ function Gameboard() {
     }
     return 1;
   }
-  return { board, getBoard, fillBoard };
+
+  function receiveAttack(coordHit) {
+    if (board[coordHit.x][coordHit.y] === -1) return 0;
+    board[coordHit.x][coordHit.y] = -1;
+
+    return 1;
+  }
+
+  return { board, getBoard, fillBoard, receiveAttack };
 }
 
 module.exports = Gameboard;

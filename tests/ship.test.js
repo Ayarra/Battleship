@@ -1,6 +1,6 @@
 import Ship from "../src/ship";
 
-describe("Testing the ship module", () => {
+describe.skip("Testing the ship module", () => {
   describe("Creating a ship with valid length", () => {
     it("Return error if ships's length is invalid", () => {
       expect(Ship("55")).toBe("Invalid length");

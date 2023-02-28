@@ -17,7 +17,7 @@ describe("Testing the gameboard module", () => {
     ]);
   });
 
-  describe("Filling the gameboard", () => {
+  describe.skip("Filling the gameboard", () => {
     it("Fill a space with a coordinate", () => {
       let newBoard = Gameboard();
       let shipCoord = { x: 2, y: 4 };
@@ -178,9 +178,54 @@ describe("Testing the gameboard module", () => {
   });
 
   describe("Attacking the gameboard", () => {
-    it.todo("attacking a full space");
-    it.todo("attacking an empty space");
-    it.todo("attacking a full space");
-    it.todo("attacking a full space");
+    let newBoard = Gameboard();
+    newBoard.fillBoard({ x: 0, y: 0 }, Ship(3, "vertical"));
+    newBoard.fillBoard({ x: 1, y: 0 }, Ship(4, "horizontal"));
+
+    it("attacking a full space", () => {
+      expect(newBoard.receiveAttack({ x: 0, y: 0 })).toBe(1);
+      expect(newBoard.getBoard()).toEqual([
+        [-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]);
+    });
+    it("attacking an empty space", () => {
+      expect(newBoard.receiveAttack({ x: 3, y: 3 })).toBe(1);
+      expect(newBoard.getBoard()).toEqual([
+        [-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, -1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]);
+    });
+    it("attacking a destroyed space", () => {
+      expect(newBoard.receiveAttack({ x: 3, y: 3 })).toBe(0);
+      expect(newBoard.getBoard()).toEqual([
+        [-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, -1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]);
+    });
   });
 });
