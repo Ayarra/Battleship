@@ -1,19 +1,15 @@
 import Ship from "./ship";
 
 function Gameboard() {
-  let board = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-
+  // Init playing board
+  const board = [];
+  for (let i = 0; i < 10; i++) {
+    const row = [];
+    board.push(row);
+    for (let j = 0; j < 10; j++) {
+      row.push(0);
+    }
+  }
   function getBoard() {
     return board;
   }
@@ -56,6 +52,7 @@ function Gameboard() {
         board[shipCoord.y++][shipCoord.x] = 1;
       i++;
     }
+
     return 1;
   }
 
