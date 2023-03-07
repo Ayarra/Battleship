@@ -57,10 +57,18 @@ function Gameboard() {
   }
 
   function receiveAttack(coordHit) {
-    if (board[coordHit.x][coordHit.y] === -1) return 0;
-    board[coordHit.x][coordHit.y] = -1;
+    if (board[coordHit.y][coordHit.x] === -1) return 0;
+    else board[coordHit.y][coordHit.x] = -1;
 
-    return 1;
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (board[i][j] === 1) {
+          console.log(i, j);
+          return 1;
+        }
+      }
+    }
+    return -1;
   }
 
   return { board, getBoard, fillBoard, receiveAttack };

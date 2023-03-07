@@ -111,7 +111,7 @@ describe("Testing the gameboard module", () => {
     newBoard.fillBoard({ x: 0, y: 0 }, Ship(3, "vertical"));
     newBoard.fillBoard({ x: 1, y: 0 }, Ship(4, "horizontal"));
 
-    it("attacking a full space", () => {
+    it("Attack a full space", () => {
       expect(newBoard.receiveAttack({ x: 0, y: 0 })).toBe(1);
       expect(newBoard.getBoard()).toEqual([
         [-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -126,7 +126,7 @@ describe("Testing the gameboard module", () => {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       ]);
     });
-    it("attacking an empty space", () => {
+    it("Attack an empty space", () => {
       expect(newBoard.receiveAttack({ x: 3, y: 3 })).toBe(1);
       expect(newBoard.getBoard()).toEqual([
         [-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
@@ -141,12 +141,34 @@ describe("Testing the gameboard module", () => {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       ]);
     });
-    it("attacking a destroyed space", () => {
+    it("Attack a destroyed space", () => {
       expect(newBoard.receiveAttack({ x: 3, y: 3 })).toBe(0);
       expect(newBoard.getBoard()).toEqual([
         [-1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, -1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      ]);
+    });
+    it("Check all ships are sunk", () => {
+      newBoard.receiveAttack({ x: 0, y: 0 });
+      newBoard.receiveAttack({ x: 1, y: 0 });
+      newBoard.receiveAttack({ x: 2, y: 0 });
+      newBoard.receiveAttack({ x: 3, y: 0 });
+      newBoard.receiveAttack({ x: 4, y: 0 });
+      newBoard.receiveAttack({ x: 0, y: 1 });
+
+      expect(newBoard.receiveAttack({ x: 0, y: 2 })).toBe(-1);
+      expect(newBoard.getBoard()).toEqual([
+        [-1, -1, -1, -1, -1, 0, 0, 0, 0, 0],
+        [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, -1, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
