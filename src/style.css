@@ -1,0 +1,64 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(224, 224, 224);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 5em;
+}
+
+.start {
+  padding: 1em;
+  font-size: 1.6em;
+  background-color: rgba(147, 145, 255, 0.966);
+  border: none;
+  border-radius: 15%;
+}
+
+.start:hover {
+  border: 4px solid rgba(113, 111, 253, 0.966);
+  cursor: pointer;
+}
+
+.setup {
+  display: flex;
+
+  /* display: none; */
+}
+
+.player-gameboard {
+  height: 500px;
+  width: 500px;
+  border: 1px solid;
+  /* flex: none; */
+  background-color: white;
+  border: 2px solid;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  border: 1px solid black;
+}
+
+.column:hover {
+  cursor: pointer;
+  background-color: antiquewhite;
+}

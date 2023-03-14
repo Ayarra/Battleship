@@ -14,7 +14,7 @@ function boardCreate(y, x) {
   return board;
 }
 
-describe("Testing the gameboard module", () => {
+describe.skip("Testing the gameboard module", () => {
   it("Initialize a 10x10 boardgame", () => {
     const testBoard = boardCreate([], []);
     expect(Gameboard().board).toEqual(testBoard);

@@ -1,5 +1,3 @@
-import Ship from "./ship";
-
 function Gameboard() {
   // Init playing board
   const board = [];
