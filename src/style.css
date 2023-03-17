@@ -44,7 +44,7 @@ h1 {
   /* display: none; */
 }
 
-.player-gameboard {
+.setup-gameboard {
   height: 500px;
   width: 500px;
   border: 1px solid;
@@ -63,5 +63,4 @@ h1 {
 
 .column:hover {
   cursor: pointer;
-  background-color: antiquewhite;
 }
