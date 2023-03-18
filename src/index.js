@@ -11,3 +11,10 @@ startButton.addEventListener("click", () => {
   setup.style.display = "block";
 });
 
+// console.log(setupBoard.children[j]);
+// setupBoard.children[i].children[j].style.backgroundColor =
+//   "antiquewhite";
+// setupBoard.children[i + 1].children[j].style.backgroundColor =
+//   "antiquewhite";
+// setupBoard.children[i + 2].children[j].style.backgroundColor =
+//   "antiquewhite";

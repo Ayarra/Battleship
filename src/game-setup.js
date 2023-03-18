@@ -1,32 +1,10 @@
-import Gameboard from "./gameboard";
 import { armada } from "./ship-setter";
-import Ship from "./ship";
+import { cellColor, spaceChecker } from "./boardColors";
 
 let setupBoard = document.querySelector(".setup-gameboard");
 let resetButton = document.querySelector(".reset");
 
-let playerGameboard = new Gameboard();
 let playerArmada = [...armada];
-
-function instructions() {
-  console.log(playerArmada);
-}
-
-function drawShips() {
-  playerArmada.shift();
-  return playerArmada;
-}
-
-function spaceChecker(playerArmada, row, j) {
-  for (let k = 0; k < playerArmada.length; k++) {
-    if (
-      row.children[j + k] &&
-      row.children[j + k].style.backgroundColor === "green"
-    )
-      return 0;
-  }
-  return 1;
-}
 
 const drawBoard = () => {
   for (let i = 0; i < 10; i++) {
@@ -36,39 +14,12 @@ const drawBoard = () => {
     row.classList.add("row");
     for (let j = 0; j < 10; j++) {
       let column = document.createElement("div");
-
-      // Hovering over col
-
       column.onmouseenter = () => {
-        if (spaceChecker(playerArmada[0], row, j)) {
-          for (let k = 0; k < playerArmada[0].length; k++) {
-            if (row.children[j + playerArmada[0].length - 1]) {
-              row.children[j + k].style.backgroundColor = "antiquewhite";
-            } else {
-              row.children[j].style.backgroundColor = "red";
-            }
-          }
-        } else if (row.children[j].style.backgroundColor !== "green") {
-          row.children[j].style.backgroundColor = "red";
-        }
+        cellColor("hover", playerArmada[0], row, j);
       };
-
-      // Out of a col
-
       column.onmouseout = () => {
-        if (spaceChecker(playerArmada[0], row, j)) {
-          for (let k = 0; k < playerArmada[0].length; k++) {
-            if (row.children[j + playerArmada[0].length - 1]) {
-              row.children[j + k].style.backgroundColor = "white";
-            } else {
-              row.children[j].style.backgroundColor = "white";
-            }
-          }
-        } else if (row.children[j].style.backgroundColor !== "green") {
-          row.children[j].style.backgroundColor = "white";
-        }
+        cellColor("unhover", playerArmada[0], row, j);
       };
-
       column.onclick = () => {
         if (spaceChecker(playerArmada[0], row, j)) {
           for (let k = 0; k < playerArmada[0].length; k++) {
@@ -76,12 +27,21 @@ const drawBoard = () => {
               row.children[j + k].style.backgroundColor = "green";
             }
           }
+          if (row.children[j].style.backgroundColor !== "red")
+            playerArmada.shift();
         }
       };
-
       row.appendChild(column);
       column.classList.add("column");
     }
+  }
+};
+
+document.onkeydown = (e) => {
+  if (e.key === "o") {
+    if (playerArmada[0].orientation === "vertical")
+      playerArmada[0].orientation = "horizontal";
+    else playerArmada[0].orientation = "vertical";
   }
 };
 
